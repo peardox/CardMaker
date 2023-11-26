@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{A5A849BC-CD73-4F2E-8702-64E4EFB9A568}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="FMX\FMXCardTest.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="VCL\VCLCardTest.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="FMXCardTest">
+        <MSBuild Projects="FMX\FMXCardTest.dproj"/>
+    </Target>
+    <Target Name="FMXCardTest:Clean">
+        <MSBuild Projects="FMX\FMXCardTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMXCardTest:Make">
+        <MSBuild Projects="FMX\FMXCardTest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="VCLCardTest">
+        <MSBuild Projects="VCL\VCLCardTest.dproj"/>
+    </Target>
+    <Target Name="VCLCardTest:Clean">
+        <MSBuild Projects="VCL\VCLCardTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLCardTest:Make">
+        <MSBuild Projects="VCL\VCLCardTest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="FMXCardTest;VCLCardTest"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="FMXCardTest:Clean;VCLCardTest:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="FMXCardTest:Make;VCLCardTest:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
